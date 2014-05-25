@@ -1356,6 +1356,7 @@ int main(int argc, char *argv[])
 
 	/* Input init: */
 
+	printf("td1...INPUT INIT: avformat_open_input...%s\n", iname);
 	if ((err = avformat_open_input(&ic, iname, NULL, NULL) != 0)) {
 		fprintf(stderr, "Failed to open '%s': %s\n", iname,
 			strerror(err));
@@ -1363,13 +1364,16 @@ int main(int argc, char *argv[])
 	}
 	ctx.ic = ic;
 
+	printf("td1...avformat_find_stream_info...%s\n", iname);
 	if (avformat_find_stream_info(ic, NULL) < 0) {
 		fprintf(stderr, "Failed to find streams in '%s'\n", iname);
 		exit(1);
 	}
 
+	printf("td1...avformat_dump_format %s\n", iname);
 	av_dump_format(ic, 0, iname, 0);
 
+	printf("td1...av_find_best_stream...\n");
 	vidindex = av_find_best_stream(ic, AVMEDIA_TYPE_VIDEO, -1, -1,
 		NULL, 0);
 	if (vidindex < 0) {
@@ -1390,13 +1394,22 @@ int main(int argc, char *argv[])
 	printf("File descriptor %d\n", fd);
 #endif
 
+	printf("td1...OUTPUT INIT:\n");
 	for (i = 0; i < ic->nb_streams; i++) {
-		printf("Found stream %d, context %p\n",
+		printf("*** Found stream %d, context %p\n",
 			ic->streams[i]->index, ic->streams[i]->codec);
 	}
 
+	/* init bcm host */
+	printf("td1...bcm_host_init...\n");
 	bcm_host_init();
-	OERR(OMX_Init());
+
+	/* init OMX */	
+	printf("td1...OMX_Init...\n");
+        OERR(OMX_Init());
+
+	/* get handlings */
+	printf("td1...OMX_GetHandle...\n");
 	OERR(OMX_GetHandle(&dec, DECNAME, &ctx, &decevents));
 	OERR(OMX_GetHandle(&enc, ENCNAME, &ctx, &encevents));
 	OERR(OMX_GetHandle(&rsz, RSZNAME, &ctx, &rszevents));
@@ -1409,21 +1422,26 @@ int main(int argc, char *argv[])
 	printf("Obtained handles.  %p decode, %p encode\n",
 		dec, enc);
 
+	printf("td1...OMX_GetParameter...DECODER\n");
 	OERR(OMX_GetParameter(dec, OMX_IndexParamVideoInit, porttype));
 	printf("Found %d ports, starting at %d (%x) on decoder\n",
 		porttype->nPorts, porttype->nStartPortNumber,
 		porttype->nStartPortNumber);
 
+	printf("td1...OMX_GetParameter...ENCODER\n");
 	OERR(OMX_GetParameter(enc, OMX_IndexParamVideoInit, porttype));
 	printf("Found %d ports, starting at %d (%x) on encoder\n",
 		porttype->nPorts, porttype->nStartPortNumber,
 		porttype->nStartPortNumber);
 
+	printf("td1...OMX_GetParameter...PARAMETER IMAGE INIT\n");
 	OERR(OMX_GetParameter(rsz, OMX_IndexParamImageInit, porttype));
 	printf("Found %d ports, starting at %d(%x) on resizer\n",
 		porttype->nPorts, porttype->nStartPortNumber,
 		porttype->nStartPortNumber);
 
+	/* disable ports */
+	printf("td1...OMX_SendCommand: OMX_CommandPortDisable before setting...\n");
 	OERR(OMX_SendCommand(dec, OMX_CommandPortDisable, PORT_DEC, NULL));
 	OERR(OMX_SendCommand(dec, OMX_CommandPortDisable, PORT_DEC+1, NULL));
 	OERR(OMX_SendCommand(enc, OMX_CommandPortDisable, PORT_ENC, NULL));
@@ -1436,6 +1454,7 @@ int main(int argc, char *argv[])
 	}
 
 	portdef->nPortIndex = PORT_DEC;
+	printf("td1...OMX_GetParameter...PORT_DEC\n");
 	OERR(OMX_GetParameter(dec, OMX_IndexParamPortDefinition, portdef));
 	viddef = &portdef->format.video;
 	viddef->nFrameWidth = ic->streams[vidindex]->codec->width;
@@ -1447,6 +1466,9 @@ int main(int argc, char *argv[])
 		mapcodec(ic->streams[vidindex]->codec->codec_id);
 	viddef->bFlagErrorConcealment = 0;
 //	viddef->xFramerate = 25<<16;
+
+
+	printf("td1...OMX_SetParameter...PORT_DEC\n");
 	OERR(OMX_SetParameter(dec, OMX_IndexParamPortDefinition, portdef));
 
 #if 0
@@ -1467,6 +1489,7 @@ int main(int argc, char *argv[])
 	MAKEME(level, OMX_VIDEO_PARAM_PROFILELEVELTYPE);
 	level->nPortIndex = PORT_ENC+1;
 /* Dump what the encoder is capable of: */
+	printf("\ntd1...OMX_GetParameter...PORT_ENC\n\n");
 	for (oerr = OMX_ErrorNone, i = 0; oerr == OMX_ErrorNone; i++) {
 		pfmt->nIndex = i;
 		oerr = OMX_GetParameter(enc, OMX_IndexParamVideoPortFormat,
@@ -1502,12 +1525,14 @@ int main(int argc, char *argv[])
 	}
 
 /* Dump current port states: */
+	printf("td1...dumpport states...PORT_DEC\n");
 	dumpport(dec, PORT_DEC);
 	dumpport(dec, PORT_DEC+1);
 	if (ctx.resize) {
 		dumpport(rsz, PORT_RSZ);
 		dumpport(rsz, PORT_RSZ+1);
 	}
+	printf("td1...dumpport states...PORT_ENC\n");
 	dumpport(enc, PORT_ENC);
 	dumpport(enc, PORT_ENC+1);
 
@@ -1528,6 +1553,9 @@ int main(int argc, char *argv[])
 	filtertest = ish264;
 	tmpbufoff = 0;
 	tmpbuf = NULL;
+
+
+	printf("\n\ntd1 stop here...START INITIAL LOOP UNTIL STATE CHANGE ON PORT 131...\n\n");
 
 	for (offset = i = j = 0; ctx.decstate != DECFAILED; i++, j++) {
 		int rc;
