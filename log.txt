@@ -1,0 +1,1349 @@
+LOG FILE 05/26/2014 
+OUTPUT FILE: NO VIDEO
+INPUT DECODE: OK, bird.h264
+-m OUTPUT DECODED VIDEO OK
+
+NOTE: Need to test on TD3 and TD4
+
+
+pi@td1 ~/projects/omxtx $ ./omxtx bird.h264 out_bird.h264 -m
+td1...INPUT INIT: avformat_open_input...bird.h264
+td1...avformat_find_stream_info...bird.h264
+[h264 @ 0x164d9a0] max_analyze_duration reached
+[h264 @ 0x164d9a0] Estimating duration from bitrate, this may be inaccurate
+td1...avformat_dump_format bird.h264
+Input #0, h264, from 'bird.h264':
+  Duration: N/A, bitrate: N/A
+    Stream #0.0: Video: h264 (Main), yuv420p, 1920x1080, 25 fps, 25 tbr, 1200k tbn, 2400k tbc
+td1...av_find_best_stream...
+Found a video at index 0
+Frame size: 1920x1080
+td1...OUTPUT INIT:
+Found stream 0, context 0x164f860
+td1...bcm_host_init...
+td1...OMX_Init...
+OMX_Init() completed at 1409.
+td1...OMX_GetHandles: DEC, ENC, RESIZE, GENERAL events...
+OMX_GetHandle(&dec, DECNAME, &ctx, &decevents) completed at 1413.
+OMX_GetHandle(&enc, ENCNAME, &ctx, &encevents) completed at 1414.
+OMX_GetHandle(&rsz, RSZNAME, &ctx, &rszevents) completed at 1415.
+OMX_GetHandle(&dei, DEINAME, &ctx, &genevents) completed at 1416.
+Obtained handles.  0x164f608 decode, 0x164f6d8 encode
+td1...OMX_GetParameter...DECODER
+OMX_GetParameter(dec, OMX_IndexParamVideoInit, porttype) completed at 1426.
+Found 2 ports, starting at 130 (82) on decoder
+td1...OMX_GetParameter...ENCODER
+OMX_GetParameter(enc, OMX_IndexParamVideoInit, porttype) completed at 1432.
+Found 2 ports, starting at 200 (c8) on encoder
+td1...OMX_GetParameter...PARAMETER IMAGE INIT
+OMX_GetParameter(rsz, OMX_IndexParamImageInit, porttype) completed at 1438.
+Found 2 ports, starting at 60(3c) on resizer
+td1...OMX_SendCommand: OMX_CommandPortDisable before setting...
+OMX_SendCommand(dec, OMX_CommandPortDisable, PORT_DEC, NULL) completed at 1445.
+OMX_SendCommand(dec, OMX_CommandPortDisable, PORT_DEC+1, NULL) completed at 1446.
+OMX_SendCommand(enc, OMX_CommandPortDisable, PORT_ENC, NULL) completed at 1447.
+OMX_SendCommand(enc, OMX_CommandPortDisable, PORT_ENC+1, NULL) completed at 1448.
+td1...OMX_GetParameter...PORT_DEC
+OMX_GetParameter(dec, OMX_IndexParamPortDefinition, portdef) completed at 1458.
+Mapping codec ID 28 (1c)
+Mapping codec 28 to 7
+Mapping codec ID 28 (1c)
+td1...OMX_SetParameter...PORT_DEC
+OMX_SetParameter(dec, OMX_IndexParamPortDefinition, portdef) completed at 1472.
+
+td1...OMX_GetParameter...PORT_ENC
+
+Codecs supported:
+        Index:          0
+        Codec:          0 (0)
+        Colour:         0
+        Framerate:      0 (0.000000)
+Levels supported:
+        Index:          0
+        Profile:        1
+        Level:          256
+Levels supported:
+        Index:          1
+        Profile:        32768
+        Level:          256
+td1...dumpport states...PORT_DEC
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 130 is input, disabled
+Wants 20 bufs, needs 1, size 81920, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         0
+        SliceHeight:    0
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          7
+        Colour:         0
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 131 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+td1...dumpport states...PORT_ENC
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 200 is input, disabled
+Wants 1 bufs, needs 1, size 15360, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          160
+        Height:         64
+        Stride:         160
+        SliceHeight:    64
+        Bitrate:        0
+        Framerate:      1966080 (1e0000); (30.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 201 is output, disabled
+Wants 1 bufs, needs 1, size 65536, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          160
+        Height:         64
+        Stride:         160
+        SliceHeight:    64
+        Bitrate:        0
+        Framerate:      1966080 (1e0000); (30.000000)
+        Error hiding:   0
+        Codec:          4
+        Colour:         0
+OMX_SendCommand(dec, OMX_CommandStateSet, OMX_StateIdle, NULL) completed at 1539.
+OMX_GetParameter(h, OMX_IndexParamPortDefinition, portdef) completed at 724.
+OMX_SendCommand(h, OMX_CommandPortEnable, port, NULL) completed at 727.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+Allocated a buffer of 81920 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+OMX_SendCommand(dec, OMX_CommandStateSet, OMX_StateExecuting, NULL) completed at 1550.
+
+
+td1...START INITIAL LOOP UNTIL DECODE STATE CHANGES TO SUCCESS...
+
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...dofiltertest(rp)
+No need for a filter.
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+Decoder 0x164f608 port 131 settings changed.
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 131 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+td1...av_rescale
+Decoder has changed settings.  Setting up encoder.
+OMX_GetHandle(&spl, SPLNAME, &ctx, &genevents) completed at 850.
+OMX_GetHandle(&vid, VIDNAME, &ctx, &genevents) completed at 851.
+OMX_SendCommand(spl, OMX_CommandPortDisable, PORT_SPL+i, NULL) completed at 854.
+OMX_SendCommand(spl, OMX_CommandPortDisable, PORT_SPL+i, NULL) completed at 854.
+OMX_SendCommand(spl, OMX_CommandPortDisable, PORT_SPL+i, NULL) completed at 854.
+OMX_SendCommand(spl, OMX_CommandPortDisable, PORT_SPL+i, NULL) completed at 854.
+OMX_SendCommand(spl, OMX_CommandPortDisable, PORT_SPL+i, NULL) completed at 854.
+OMX_SendCommand(vid, OMX_CommandPortDisable, PORT_VID, NULL) completed at 856.
+OMX_GetParameter(dec, OMX_IndexParamPortDefinition, portdef) completed at 861.
+OMX_SetParameter(enc, OMX_IndexParamPortDefinition, portdef) completed at 971.
+OMX_SendCommand(vid, OMX_CommandStateSet, OMX_StateIdle, NULL) completed at 976.
+OMX_SendCommand(spl, OMX_CommandStateSet, OMX_StateIdle, NULL) completed at 978.
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 250 is input, disabled
+Wants 1 bufs, needs 1, size 15360, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          0
+        Height:         0
+        Stride:         0
+        SliceHeight:    0
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          2
+        Colour:         0
+Unknown! 0x1655598 port 251 settings changed.
+Unknown! 0x1655598 port 252 settings changed.
+Unknown! 0x1655598 port 253 settings changed.
+Unknown! 0x1655598 port 254 settings changed.
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 254 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 253 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_SetParameter(spl, OMX_IndexParamPortDefinition, portdef) completed at 984.
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 252 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 251 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_SetParameter(spl, OMX_IndexParamPortDefinition, portdef) completed at 987.
+OMX_SetParameter(spl, OMX_IndexParamPortDefinition, portdef) completed at 990.
+Unknown! 0x1655598 port 251 settings changed.
+Unknown! 0x1655598 port 252 settings changed.
+Unknown! 0x1655598 port 253 settings changed.
+Unknown! 0x1655598 port 254 settings changed.
+OMX_SetupTunnel(prev, pp, spl, PORT_SPL) completed at 991.
+OMX_SetupTunnel(spl, PORT_SPL+2, vid, PORT_VID) completed at 992.
+OMX_SendCommand(enc, OMX_CommandStateSet, OMX_StateIdle, NULL) completed at 1001.
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 251 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 200 is input, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 254 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 253 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 252 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 251 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_SetupTunnel(prev, pp, enc, PORT_ENC) completed at 1004.
+OMX_SetParameter(enc, OMX_IndexParamPortDefinition, portdef) completed at 1020.
+OMX_SetParameter(enc, OMX_IndexParamVideoBitrate, bitrate) completed at 1026.
+OMX_SetParameter(enc, OMX_IndexParamVideoPortFormat, pfmt) completed at 1048.
+OMX_SetParameter(enc, OMX_IndexConfigVideoFramerate, framerate) completed at 1053.
+OMX_GetParameter(enc, OMX_IndexParamVideoProfileLevelCurrent, level) completed at 1069.
+Current level:          2048
+Current profile:        8
+OMX_SetParameter(enc, OMX_IndexParamVideoProfileLevelCurrent, level) completed at 1073.
+OMX_GetParameter(h, OMX_IndexParamPortDefinition, portdef) completed at 724.
+OMX_SendCommand(h, OMX_CommandPortEnable, port, NULL) completed at 727.
+Allocated a buffer of 3133440 bytes
+OMX_UseBuffer(h, end, port, NULL, portdef->nBufferSize, buf) completed at 737.
+OMX_SendCommand(dec, OMX_CommandPortEnable, PORT_DEC+1, NULL) completed at 1076.
+OMX_SendCommand(enc, OMX_CommandPortEnable, PORT_ENC, NULL) completed at 1084.
+OMX_SendCommand(vid, OMX_CommandPortEnable, PORT_VID, NULL) completed at 1088.
+OMX_SendCommand(spl, OMX_CommandPortEnable, PORT_SPL, NULL) completed at 1090.
+OMX_SendCommand(spl, OMX_CommandPortEnable, PORT_SPL+1, NULL) completed at 1092.
+OMX_SendCommand(spl, OMX_CommandPortEnable, PORT_SPL+2, NULL) completed at 1094.
+Pre-sleep.
+Unknown! 0x1655598 port 251 settings changed.
+Unknown! 0x1655598 port 253 settings changed.
+Unknown! 0x1655598 port 254 settings changed.
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 254 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 253 is output, disabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 0, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 251 is output, enabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 1, pop: 0, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+Post-sleep.
+OMX_SendCommand(vid, OMX_CommandStateSet, OMX_StateExecuting, NULL) completed at 1100.
+OMX_SendCommand(spl, OMX_CommandStateSet, OMX_StateExecuting, NULL) completed at 1102.
+Encoder 0x164f6d8 port 201 settings changed.
+OMX_SendCommand(enc, OMX_CommandStateSet, OMX_StateExecuting, NULL) completed at 1122.
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 201 is output, enabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 1, pop: 1, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         0
+        SliceHeight:    0
+        Bitrate:        2097152
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          7
+        Colour:         0
+OMX_FillThisBuffer(enc, encbufs) completed at 1124.
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 130 is input, enabled
+Wants 20 bufs, needs 1, size 81920, enabled: 1, pop: 1, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         0
+        SliceHeight:    0
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          7
+        Colour:         0
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 131 is output, enabled
+Wants 0 bufs, needs 0, size 3133440, enabled: 1, pop: 1, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 200 is input, enabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 1, pop: 1, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 201 is output, enabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 1, pop: 1, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         0
+        SliceHeight:    0
+        Bitrate:        2097152
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          7
+        Colour:         0
+Found a codec at 0xb6880c24
+Defaults: output stream: 1/90000, input stream: 1/1200000, input codec: 1/2400000, output codec: 0/1, output framerate: 0/0, input framerate: 25/1, ticks: 1; 2 -9223372036854775808/0
+Defaults: output stream: 1/90000, input stream: 1/1200000, input codec: 1/2400000, output codec: 1/2400000, output framerate: 25/1, input framerate: 25/1
+Time base: 1/90000, fps 25/1
+
+
+
+Input:
+Input #0, h264, from 'bird.h264':
+  Duration: N/A, bitrate: N/A
+    Stream #0.0: Video: h264 (Main), yuv420p, 1920x1080, 25 fps, 25 tbr, 1200k tbn, 2400k tbc
+
+
+
+Output:
+Output #0, h264, to 'out_bird.h264':
+    Stream #0.0: Video: libx264, 1920x1080, q=-1--1, 2097 kb/s, 25 fps, 25 tbr, 90k tbn, 2400k tbc
+New SPS, length 20
+td1...getnextvideopacket(rp)
+td1...av_rescale
+New PPS, length 9
+Writing initial frame buffer contents out... ...done.  Wrote 0 frames.
+
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)es last second: 77
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale  5s).  Frames last second: 43
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)es last second: 23
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)es last second: 40
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)es last second: 4
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)es last second: 8
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)es last second: 29
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)es last second: 33
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)es last second: 26
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)es last second: 36
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+td1...av_rescale
+td1...getnextvideopacket(rp)
+
+
+td1...END LOOP PROCESS 360 frames, but wrote 0 frames!...
+
+Processed 360 frames in 13 seconds; 27f/s
+
+
+In exit handler, after 360 frames:
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 130 is input, enabled
+Wants 20 bufs, needs 1, size 81920, enabled: 1, pop: 1, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         0
+        SliceHeight:    0
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          7
+        Colour:         0
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 131 is output, enabled
+Wants 0 bufs, needs 0, size 3133440, enabled: 1, pop: 1, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 200 is input, enabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 1, pop: 1, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         1920
+        SliceHeight:    1088
+        Bitrate:        0
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          0
+        Colour:         20
+OMX_GetParameter(handle, OMX_IndexParamPortDefinition, portdef) completed at 215.
+Port 201 is output, enabled
+Wants 1 bufs, needs 1, size 3133440, enabled: 1, pop: 1, aligned 16
+Video type is currently:
+        MIME:           (null)
+        Native:         (nil)
+        Width:          1920
+        Height:         1080
+        Stride:         0
+        SliceHeight:    0
+        Bitrate:        2097152
+        Framerate:      0 (0); (0.000000)
+        Error hiding:   0
+        Codec:          7
+        Colour:         0
+Decoder state: 3
+Encoder state: 3

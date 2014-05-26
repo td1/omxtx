@@ -1396,7 +1396,7 @@ int main(int argc, char *argv[])
 
 	printf("td1...OUTPUT INIT:\n");
 	for (i = 0; i < ic->nb_streams; i++) {
-		printf("*** Found stream %d, context %p\n",
+		printf("Found stream %d, context %p\n",
 			ic->streams[i]->index, ic->streams[i]->codec);
 	}
 
@@ -1409,7 +1409,7 @@ int main(int argc, char *argv[])
         OERR(OMX_Init());
 
 	/* get handlings */
-	printf("td1...OMX_GetHandle...\n");
+	printf("td1...OMX_GetHandles: DEC, ENC, RESIZE, GENERAL events...\n");
 	OERR(OMX_GetHandle(&dec, DECNAME, &ctx, &decevents));
 	OERR(OMX_GetHandle(&enc, ENCNAME, &ctx, &encevents));
 	OERR(OMX_GetHandle(&rsz, RSZNAME, &ctx, &rszevents));
@@ -1555,7 +1555,7 @@ int main(int argc, char *argv[])
 	tmpbuf = NULL;
 
 
-	printf("\n\ntd1 stop here...START INITIAL LOOP UNTIL STATE CHANGE ON PORT 131...\n\n");
+	printf("\n\ntd1...START INITIAL LOOP UNTIL DECODE STATE CHANGES TO SUCCESS...\n\n");
 
 	for (offset = i = j = 0; ctx.decstate != DECFAILED; i++, j++) {
 		int rc;
@@ -1568,6 +1568,7 @@ int main(int argc, char *argv[])
 
 		if (offset == 0 && ctx.decstate != DECFLUSH) {
 			uint64_t omt;
+			printf("td1...getnextvideopacket(rp)\n");
 			rc = getnextvideopacket(rp);
 			if (rc != 0) {
 				if (ic->pb->eof_reached)
@@ -1576,6 +1577,7 @@ int main(int argc, char *argv[])
 			}
 			outindex = rp->stream_index;
 
+			printf("td1...av_rescale\n");
 			omt = av_rescale_q(rp->pts,
 				ic->streams[vidindex]->time_base,
 				omxtimebase);
@@ -1589,6 +1591,7 @@ int main(int argc, char *argv[])
 
 			if (ish264 && filtertest) {
 				filtertest = 0;
+				printf("td1...dofiltertest(rp)\n");
 				ctx.bsfc = dofiltertest(rp);
 			}
 			if (ctx.bsfc) {
@@ -1798,6 +1801,8 @@ int main(int argc, char *argv[])
 	}
 
 	end = time(NULL);
+
+	printf("\n\ntd1...END LOOP PROCESS %d frames, but wrote 0 frames!...\n\n", ctx.framecount);
 
 	printf("Processed %d frames in %d seconds; %df/s\n\n\n",
 		ctx.framecount, end-start, (ctx.framecount/(end-start)));
