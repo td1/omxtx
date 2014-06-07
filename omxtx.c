@@ -1508,6 +1508,38 @@ int main(int argc, char *argv[])
 			((float)pfmt->xFramerate/(float)65536));
 	}
 
+        // HN Check to see the format can be set here
+        portdef->nPortIndex = PORT_ENC;
+	printf("td1...OMX_GetParameter...PORT_ENC\n");
+	OERR(OMX_GetParameter(enc, OMX_IndexParamPortDefinition, portdef));
+	viddef = &portdef->format.video;
+	viddef->nFrameWidth = 1280; 
+	viddef->nFrameHeight = 720;
+	printf("td1...OMX_SetParameter...PORT_ENC\n");
+	OERR(OMX_SetParameter(enc, OMX_IndexParamPortDefinition, portdef));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	for (oerr = OMX_ErrorNone, i = 0; oerr == OMX_ErrorNone; i++) {
 		level->nProfileIndex = i;
 		oerr = OMX_GetParameter(enc,
@@ -1568,7 +1600,7 @@ int main(int argc, char *argv[])
 
 		if (offset == 0 && ctx.decstate != DECFLUSH) {
 			uint64_t omt;
-			printf("td1...getnextvideopacket(rp)\n");
+			// printf("td1...getnextvideopacket(rp)\n");
 			rc = getnextvideopacket(rp);
 			if (rc != 0) {
 				if (ic->pb->eof_reached)
@@ -1577,7 +1609,7 @@ int main(int argc, char *argv[])
 			}
 			outindex = rp->stream_index;
 
-			printf("td1...av_rescale\n");
+			// printf("td1...av_rescale\n");
 			omt = av_rescale_q(rp->pts,
 				ic->streams[vidindex]->time_base,
 				omxtimebase);
